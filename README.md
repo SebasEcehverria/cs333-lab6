@@ -49,6 +49,8 @@ show collections
 
 **Question 1:** what is `_id` for? What would MongoDB do if you left it out? (Try it: insert a third product with no `_id`, then look at it in step 3.)
 
+**The _id field is a unique identifier for each document in a MongoDB collection. It works similarly to a primary key in a relational database. If you don't provide an _id, MongoDB automatically generates one, usually as an ObjectId. When I inserted the Notebook without an _id, MongoDB generated one automatically.**
+
 ## 3. Read
 
 ```js
@@ -60,6 +62,8 @@ db.products.find({}, { name: 1, _id: 0 })
 
 **Question 2:** what does `$gt` mean? What does the second `{ name: 1, _id: 0 }` in the last command do? (It's called a **projection**.)
 
+**$gt means "greater than" and is used to find documents where a field has a value greater than the specified number. The second object is a projection, which controls which fields are returned. Setting name: 1 includes the name field, while _id: 0 excludes the ID field.**
+
 ## 4. Update
 
 The Pen has no `stock`. Give it one:
@@ -70,6 +74,8 @@ db.products.find({ _id: 1 })
 ```
 
 **Question 3:** `stock` didn't exist on the Pen. What did `$set` do?
+
+**$set adds a field to a document if it doesn't already exist, or updates the field's value if it does. In this case, it created the stock field for the Pen and set its value to 3**
 
 ## 5. Delete
 
@@ -104,6 +110,8 @@ db.products.find({ _id: 3 })
 ```
 
 **Question 4:** in a SQL database, where would the reviews go? Why is keeping them inside the product handy here?
+
+**In a SQL database, reviews would typically be stored in a separate table with a foreign key connecting each review to its product. MongoDB allows the reviews to be stored directly inside the product document as an array. This is convenient because we can retrieve the product and all its reviews together without needing a JOIN.**
 
 Copy everything from your terminal (from `mongosh` to the last command) and paste it here, in a code block:
 
