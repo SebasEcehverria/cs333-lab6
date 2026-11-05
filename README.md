@@ -189,6 +189,8 @@ Now run it a **second** time.
 
 **Question 5:** what changed the second time? Why?
 
+**The second time I ran the program, another Apple was added to the database. The first Apple was still there, so the program displayed two Apples with a rating of 7. This happens because every time the program runs, it creates and saves a new document instead of updating the existing one.**
+
 ## 9. Look at it in mongosh
 
 In your **second** terminal:
@@ -204,6 +206,8 @@ db.fruits.find()
 ```
 
 **Question 6:** your model is called `Fruit`. What is the collection called? Are your fruits from Lab 5 Part 3 in there too? Why?
+
+**The model is named Fruit, but the collection is called fruits because Mongoose automatically converts the model name to its lowercase plural form. My fruits from Lab 5 were also in the collection because both programs use the same fruitsDB database and fruits collection. MongoDB keeps the data even after the programs stop.**
 
 ## 10. Many at once, and a wrong type
 
@@ -227,6 +231,8 @@ await mango.save();
 ```
 
 **Question 7:** what error do you get? How does the schema protect your data? (Then delete the Mango lines.)
+
+**When I tried saving a Mango with the rating "ten", Mongoose threw a ValidationError saying "Cast to Number failed for value 'ten'". This happened because the schema defines rating as a Number, but I provided a string that couldn't be converted to a number. The schema protects the data by preventing invalid types from being saved into the database.**
 
 Commit: `Part 2: Mongoose`
 
